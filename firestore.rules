@@ -1,0 +1,54 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.admin == true ||
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'
+      );
+    }
+    
+    function isReporter() {
+      return isAuthenticated() && (
+        isAdmin() ||
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'reporter'
+      );
+    }
+
+    // News Articles (వార్తలు)
+    match /news/{newsId} {
+      // Any visitor can read published satirical news
+      allow read: if resource.data.status == 'published' || isReporter();
+      
+      // Reporters can create draft/pending articles
+      allow create: if isReporter();
+      
+      // Reporters can update their own pending news; Admins can edit or publish any news
+      allow update: if isAdmin() || (isReporter() && resource.data.authorId == request.auth.uid);
+      
+      // Only Admins can delete news
+      allow delete: if isAdmin();
+    }
+
+    // Grievance Redressal (భారతీయ ఐటీ నిబంధనలు 2021 ప్రకారం ఫిర్యాదుల పరిష్కారం)
+    match /grievances/{grievanceId} {
+      // Any citizen can submit a grievance complaint
+      allow create: if request.resource.data.name != null && request.resource.data.description != null;
+      // Only Grievance Officer / Admin can view and resolve grievances
+      allow read, update, delete: if isAdmin();
+    }
+
+    // User Profiles & Roles (వినియోగదారుల సమాచారం మరియు అధికారాలు)
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if request.auth.uid == userId || isAdmin();
+    }
+  }
+}

@@ -1,0 +1,105 @@
+﻿name: Build Galpika Android Release (AAB & APK)
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Signed Android App (AAB & APK)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Android SDK (API 36)
+        uses: android-actions/setup-android@v4
+        with:
+          packages: 'platforms;android-36 build-tools;36.0.0'
+
+      - name: Accept Android SDK Licenses
+        run: yes | sdkmanager --licenses || true
+
+      - name: Make Gradle Wrapper Executable
+        run: chmod +x ./gradlew
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Setup Release Keystore Environment
+        run: |
+          echo "Using authentic committed production release.keystore..."
+          echo "KEYSTORE_FILE=$(pwd)/release.keystore" >> $GITHUB_ENV
+          echo "KEYSTORE_PASSWORD=galpika12345" >> $GITHUB_ENV
+          echo "KEY_ALIAS=galpika_release_key" >> $GITHUB_ENV
+          echo "KEY_PASSWORD=galpika12345" >> $GITHUB_ENV
+
+      - name: Resolve and Display App Version
+        run: |
+          echo "================================================="
+          echo "Resolving Galpika App Version for Play Console..."
+          ./gradlew printVersion
+          echo "================================================="
+
+      - name: Build Signed Release AAB (Google Play Store Bundle)
+        run: ./gradlew clean bundleRelease --stacktrace
+
+      - name: Verify Signed Release AAB
+        run: |
+          AAB_FILE=$(ls app/build/outputs/bundle/release/*.aab | head -n 1)
+          echo "Verifying AAB signature for: $AAB_FILE"
+          jarsigner -verify -verbose "$AAB_FILE"
+
+      - name: Build Signed Release APK
+        run: ./gradlew assembleRelease --stacktrace
+
+      - name: Export Play Store Upload Certificate
+        run: |
+          keytool -export -rfc \
+            -keystore release.keystore \
+            -alias galpika_release_key \
+            -storepass galpika12345 \
+            -file upload_certificate.pem
+
+      - name: Upload Signed Release AAB (Play Console Ready)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Galpika-Signed-Release-AAB
+          path: app/build/outputs/bundle/release/*.aab
+          retention-days: 30
+
+      - name: Upload Signed Release APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Galpika-Signed-Release-APK
+          path: app/build/outputs/apk/release/*.apk
+          retention-days: 30
+
+      - name: Upload Play Store Upload Certificate (.pem)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Galpika-PlayStore-Upload-Certificate-PEM
+          path: upload_certificate.pem
+          retention-days: 30
+
+      - name: Build Summary
+        if: always()
+        run: |
+          echo "### 🚀 Galpika Android Production Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **GitHub Actions Run**: #${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit**: \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Target SDK**: Android 16 (API 36)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Play Store Bundle**: Signed \`.aab\` generated" >> $GITHUB_STEP_SUMMARY

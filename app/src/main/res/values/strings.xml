@@ -1,0 +1,43 @@
+﻿<resources>
+    <string name="app_name">గల్పిక</string>
+    <string name="app_tagline">తెలుగు వ్యంగ్య &amp; హాస్య వార్తా వేదిక</string>
+    <string name="satire_disclaimer_short">గమనిక: ఇది పూర్తిగా వ్యంగ్య/హాస్య కల్పిత కథనం మాత్రమే. ఎవరినీ కించపరచడానికి ఉద్దేశించినది కాదు.</string>
+
+    <!-- Navigation Tabs -->
+    <string name="tab_galpika">గల్పిక</string>
+    <string name="tab_local">స్థానిక</string>
+    <string name="tab_news">వార్తలు</string>
+    <string name="tab_profile">ప్రొఫైల్</string>
+
+    <!-- Drawer Items -->
+    <string name="menu_categories">విభాగాలు</string>
+    <string name="menu_saved">సేవ్ చేసిన వార్తలు</string>
+    <string name="menu_feedback">అభిప్రాయం తెలపండి</string>
+    <string name="menu_grievance">ఫిర్యాదుల పరిష్కారం (IT Rules 2021)</string>
+    <string name="menu_disclaimer">వ్యంగ్య ప్రకటన &amp; ఉద్దేశం</string>
+    <string name="menu_privacy">గోప్యతా విధానం (Privacy)</string>
+    <string name="menu_terms">నిబంధనలు (Terms)</string>
+    <string name="menu_share">యాప్‌ను షేర్ చేయండి</string>
+
+    <!-- Categories -->
+    <string name="cat_all">అన్ని</string>
+    <string name="cat_politics">రాజకీయ వ్యంగ్యం</string>
+    <string name="cat_cinema">సినిమా &amp; వినోదం</string>
+    <string name="cat_viral">వైరల్ &amp; ట్రెండింగ్</string>
+    <string name="cat_sports">క్రీడా సెటైర్లు</string>
+    <string name="cat_cartoons">కార్టూన్లు &amp; మీమ్స్</string>
+    <string name="cat_society">సమాజం &amp; వింతలు</string>
+
+    <!-- Roles -->
+    <string name="role_reader">పాఠకుడు</string>
+    <string name="role_reporter">అధికారిక రిపోర్టర్</string>
+    <string name="role_admin">ప్రధాన అడ్మిన్</string>
+
+    <!-- Actions -->
+    <string name="action_publish_news">కొత్త వార్త రాయండి</string>
+    <string name="action_google_login">గూగుల్ తో లాగిన్ అవ్వండి</string>
+    <string name="action_logout">లాగౌట్</string>
+    <string name="action_submit">సమర్పించండి</string>
+    <string name="action_share">షేర్</string>
+    <string name="action_read_more">పూర్తి వివరాలు చదవండి</string>
+</resources>

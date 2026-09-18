@@ -1,0 +1,7 @@
+﻿<resources>
+    <style name="Theme.Galpika" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/primary_blue</item>
+        <item name="android:navigationBarColor">@color/surface_white</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+</resources>

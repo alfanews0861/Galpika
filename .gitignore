@@ -1,0 +1,25 @@
+﻿*.iml
+.gradle
+/local.properties
+/.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+*.log
+*.hprof
+
+# App build output
+app/build/
+
+# Node & web build
+node_modules/
+dist/
+.firebase/
+.kotlin/
+
+# Keep keystore committed as requested
+!release.keystore
+!upload_certificate.pem

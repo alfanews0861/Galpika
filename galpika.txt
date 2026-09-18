@@ -1,0 +1,64 @@
+Idi oka poorthy staayi android satirical news application
+oka poorthy staayi news application nirminchu 
+Firebase / GCP meeda run avutundi 
+Fuctions aadhaaramgaa nadustundi 
+telugu UI / UX
+Footer lo Galpika , Local , vaarthalu , profile ane naaligu icons pettu 
+HEaddings Ramabhadra , itara normal text antha mallanna pettu 
+Blue theme pettu , simple gaa vundaali 
+Vaarthalu admin user vestaaru , konthamandi anumathi pondina reporter lu kudaa vestaaru 
+login ki profile lone google login / logout pettu 
+idi pradhaanamgaa satirical news portal , kaavuna bhaaratheeya chattala prakaaram vundavalasina policy page lanni profile page lo pettu 
+anni page lalo header pettu , left side hamburger menu pettu, menu lo avasaramayina link lanni pettu 
+Play Store rules ki anugunamgaa cheyyi ,  
+latest play console API level 36 maatrame support chestundi 
+R8 compression kudaa cheyyi 
+Firebase lo anni setting chesi vunnanu 
+App ni production ready cheyyi 
+--------------------------
+{
+  "project_info": {
+    "project_number": "998854593828",
+    "project_id": "galpika-715ae",
+    "storage_bucket": "galpika-715ae.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998854593828:android:d3a1b07a4ee066f2b9b7b1",
+        "android_client_info": {
+          "package_name": "com.alfanewgen.galpika"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998854593828-glinhaaj0joggr79fr4j9k6ubls97mau.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdCE2A9bpvnv3mDCSjpaP_fYGoQuo8TRo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998854593828-glinhaaj0joggr79fr4j9k6ubls97mau.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
+
+-----------------------------
+
+Project poorthy ayyaka commit chesi github ki push cheyyi 
+akkada action lo prrorthysaaty build chesi akkada signed release .aab mariyu .apk files tayaaru cheyyi 
+avasaramayina release keystore file kudaa push cheyyi pratisaari adagakoodadu , maaripokoodadu 
+.aab generate avutunna pratisaari version number and code increemnt ayyelaaga  cheyyi , play console reject kaakundaa vuntundi 
