@@ -54,7 +54,7 @@ jobs:
           echo "================================================="
 
       - name: Build Signed Release AAB (Google Play Store Bundle)
-        run: ./gradlew clean bundleRelease --stacktrace
+        run: ./gradlew bundleRelease --stacktrace -Dorg.gradle.jvmargs="-Xmx4096m -XX:+UseParallelGC"
 
       - name: Verify Signed Release AAB
         run: |
@@ -63,7 +63,7 @@ jobs:
           jarsigner -verify -verbose "$AAB_FILE"
 
       - name: Build Signed Release APK
-        run: ./gradlew assembleRelease --stacktrace
+        run: ./gradlew assembleRelease --stacktrace -Dorg.gradle.jvmargs="-Xmx4096m -XX:+UseParallelGC"
 
       - name: Export Play Store Upload Certificate
         run: |
