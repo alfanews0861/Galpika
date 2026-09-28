@@ -11,21 +11,24 @@ service cloud.firestore {
     function isAdmin() {
       return isAuthenticated() && (
         request.auth.token.admin == true ||
-        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'
+        request.auth.token.email == 'alfanews0861@gmail.com' ||
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
       );
     }
     
     function isReporter() {
       return isAuthenticated() && (
         isAdmin() ||
-        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'reporter'
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'reporter')
       );
     }
 
     // News Articles (వార్తలు)
     match /news/{newsId} {
       // Any visitor can read published satirical news
-      allow read: if resource.data.status == 'published' || isReporter();
+      allow read: if true;
       
       // Reporters can create draft/pending articles
       allow create: if isReporter();
@@ -37,18 +40,16 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
-    // Grievance Redressal (భారతీయ ఐటీ నిబంధనలు 2021 ప్రకారం ఫిర్యాదుల పరిష్కారం)
+    // Grievance Redressal
     match /grievances/{grievanceId} {
-      // Any citizen can submit a grievance complaint
-      allow create: if request.resource.data.name != null && request.resource.data.description != null;
-      // Only Grievance Officer / Admin can view and resolve grievances
+      allow create: if true;
       allow read, update, delete: if isAdmin();
     }
 
-    // User Profiles & Roles (వినియోగదారుల సమాచారం మరియు అధికారాలు)
+    // User Profiles & Roles
     match /users/{userId} {
       allow read: if isAuthenticated();
-      allow write: if request.auth.uid == userId || isAdmin();
+      allow write: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
     }
   }
 }

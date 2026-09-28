@@ -1,22 +1,33 @@
 ﻿package com.alfanewgen.galpika.ui.screens.profile
 
+import android.net.Uri
 import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddPhotoAlternate
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.CloudUpload
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Publish
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.alfanewgen.galpika.data.model.NewsArticle
 import com.alfanewgen.galpika.data.repository.NewsRepository
 import com.alfanewgen.galpika.theme.*
@@ -35,6 +46,7 @@ fun PublishNewsScreen(
     var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
     var summary by remember { mutableStateOf("") }
+    var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
     var imageUrl by remember { mutableStateOf("https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=800&q=80") }
 
     val categories = listOf("రాజకీయ వ్యంగ్యం", "సినిమా & వినోదం", "వైరల్ & ట్రెండింగ్", "క్రీడా సెటైర్లు", "కార్టూన్లు & మీమ్స్", "సమాజం & వింతలు")
@@ -46,6 +58,15 @@ fun PublishNewsScreen(
     var districtExpanded by remember { mutableStateOf(false) }
 
     var isSubmitting by remember { mutableStateOf(false) }
+    var isUploadingImage by remember { mutableStateOf(false) }
+
+    val imagePickerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        if (uri != null) {
+            selectedImageUri = uri
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -54,7 +75,7 @@ fun PublishNewsScreen(
                     androidx.compose.foundation.Image(
                         painter = androidx.compose.ui.res.painterResource(id = com.alfanewgen.galpika.R.drawable.galpika_logo),
                         contentDescription = "గల్పిక",
-                        contentScale = androidx.compose.ui.layout.ContentScale.Fit,
+                        contentScale = ContentScale.Fit,
                         modifier = Modifier.height(48.dp).padding(vertical = 4.dp)
                     )
                 },
@@ -151,29 +172,104 @@ fun PublishNewsScreen(
                 }
             }
 
-            // Image URL
-            OutlinedTextField(
-                value = imageUrl,
-                onValueChange = { imageUrl = it },
-                label = { Text("ఫోటో లింక్ (Image URL)", fontFamily = MallannaFont) },
-                modifier = Modifier.fillMaxWidth(),
-                singleLine = true,
-                shape = RoundedCornerShape(10.dp)
-            )
+            // Photo Selection & Storage Upload Button
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
+                    .clickable {
+                        imagePickerLauncher.launch("image/*")
+                    },
+                shape = RoundedCornerShape(12.dp),
+                colors = CardDefaults.cardColors(containerColor = Color.White),
+                border = CardDefaults.outlinedCardBorder().copy(
+                    brush = androidx.compose.ui.graphics.SolidColor(PrimaryBlue)
+                )
+            ) {
+                Column(
+                    modifier = Modifier.padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    if (selectedImageUri != null) {
+                        Text(
+                            text = "ఎంచుకున్న ఫోటో (Selected Photo)",
+                            fontFamily = RamabhadraFont,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 15.sp,
+                            color = PrimaryBlue
+                        )
+                        Spacer(modifier = Modifier.height(10.dp))
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(200.dp)
+                                .clip(RoundedCornerShape(8.dp))
+                        ) {
+                            AsyncImage(
+                                model = selectedImageUri,
+                                contentDescription = "ఎంచుకున్న ఫోటో",
+                                modifier = Modifier.fillMaxSize(),
+                                contentScale = ContentScale.Crop
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(10.dp))
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            OutlinedButton(
+                                onClick = { imagePickerLauncher.launch("image/*") },
+                                shape = RoundedCornerShape(8.dp)
+                            ) {
+                                Icon(imageVector = Icons.Default.AddPhotoAlternate, contentDescription = null, modifier = Modifier.size(18.dp))
+                                Spacer(modifier = Modifier.width(6.dp))
+                                Text("వేరే ఫోటో మార్చండి", fontFamily = MallannaFont)
+                            }
+                            IconButton(
+                                onClick = { selectedImageUri = null }
+                            ) {
+                                Icon(imageVector = Icons.Default.Delete, contentDescription = "తొలగించండి", tint = Color.Red)
+                            }
+                        }
+                    } else {
+                        Icon(
+                            imageVector = Icons.Default.CloudUpload,
+                            contentDescription = "Upload Photo",
+                            tint = PrimaryBlue,
+                            modifier = Modifier.size(44.dp)
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "ఫోటోను గ్యాలరీ / స్టోరేజ్ నుండి ఎంచుకోండి (Upload Photo)",
+                            fontFamily = RamabhadraFont,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 15.sp,
+                            color = PrimaryBlue
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = "ఇక్కడ క్లిక్ చేసి మీ ఫోన్‌ నుండి ఫోటోను ఎంచుకోండి",
+                            fontFamily = MallannaFont,
+                            fontSize = 13.sp,
+                            color = TextSecondary
+                        )
+                    }
+                }
+            }
 
-            // Summary
+            // Summary (Unlimited lines)
             OutlinedTextField(
                 value = summary,
                 onValueChange = { summary = it },
                 label = { Text("చిన్న సారాంశం (Summary)", fontFamily = MallannaFont) },
-                placeholder = { Text("2-3 వాక్యాలలో కథనం సారాంశం...", fontFamily = MallannaFont) },
+                placeholder = { Text("కథనం సారాంశం...", fontFamily = MallannaFont) },
                 modifier = Modifier.fillMaxWidth(),
                 minLines = 2,
-                maxLines = 3,
                 shape = RoundedCornerShape(10.dp)
             )
 
-            // Full Content
+            // Full Content (Unlimited lines)
             OutlinedTextField(
                 value = content,
                 onValueChange = { content = it },
@@ -195,13 +291,32 @@ fun PublishNewsScreen(
                     }
                     isSubmitting = true
                     scope.launch {
+                        var finalImageUrl = imageUrl
+
+                        if (selectedImageUri != null) {
+                            isUploadingImage = true
+                            val uploadRes = newsRepository.uploadImage(selectedImageUri!!)
+                            isUploadingImage = false
+                            if (uploadRes.isSuccess) {
+                                finalImageUrl = uploadRes.getOrNull() ?: imageUrl
+                            } else {
+                                isSubmitting = false
+                                Toast.makeText(
+                                    context,
+                                    "ఫోటో అప్‌లోడ్ విఫలమైంది: ${uploadRes.exceptionOrNull()?.message}",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                                return@launch
+                            }
+                        }
+
                         val article = NewsArticle(
                             title = title,
                             content = content,
-                            summary = summary.ifBlank { content.take(120) + "..." },
+                            summary = summary.ifBlank { content },
                             category = selectedCategory,
                             district = selectedDistrict,
-                            imageUrl = imageUrl
+                            imageUrl = finalImageUrl
                         )
                         val res = newsRepository.publishNews(article)
                         isSubmitting = false
@@ -219,7 +334,15 @@ fun PublishNewsScreen(
                 shape = RoundedCornerShape(10.dp)
             ) {
                 if (isSubmitting) {
-                    CircularProgressIndicator(color = Color.White, modifier = Modifier.size(22.dp))
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        CircularProgressIndicator(color = Color.White, modifier = Modifier.size(22.dp))
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Text(
+                            text = if (isUploadingImage) "ఫోటో స్టోరేజ్‌కి అప్‌లోడ్ అవుతోంది..." else "ప్రచురిస్తోంది...",
+                            fontFamily = MallannaFont,
+                            fontSize = 15.sp
+                        )
+                    }
                 } else {
                     Icon(imageVector = Icons.Default.Publish, contentDescription = null)
                     Spacer(modifier = Modifier.width(8.dp))

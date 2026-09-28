@@ -1,23 +1,27 @@
 ﻿package com.alfanewgen.galpika.data.repository
 
+import android.net.Uri
 import com.alfanewgen.galpika.data.model.Grievance
 import com.alfanewgen.galpika.data.model.NewsArticle
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.Source
 import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import java.util.Date
+import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class NewsRepository @Inject constructor(
     private val firestore: FirebaseFirestore,
-    private val functions: FirebaseFunctions
+    private val functions: FirebaseFunctions,
+    private val storage: FirebaseStorage
 ) {
 
     private val sampleArticles = listOf(
@@ -132,6 +136,18 @@ class NewsRepository @Inject constructor(
                 val docRef = firestore.collection("news").add(article).await()
                 Result.success(docRef.id)
             }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    suspend fun uploadImage(imageUri: Uri): Result<String> {
+        return try {
+            val fileName = "news_images/${UUID.randomUUID()}.jpg"
+            val ref = storage.reference.child(fileName)
+            ref.putFile(imageUri).await()
+            val downloadUrl = ref.downloadUrl.await().toString()
+            Result.success(downloadUrl)
         } catch (e: Exception) {
             Result.failure(e)
         }
