@@ -23,28 +23,17 @@ import com.alfanewgen.galpika.theme.RamabhadraFont
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GalpikaTopBar(
-    title: String = "గల్పిక",
     onMenuClick: () -> Unit,
     onShareClick: () -> Unit
 ) {
     CenterAlignedTopAppBar(
         title = {
-            if (title == "గల్పిక") {
-                Image(
-                    painter = painterResource(id = R.drawable.galpika_logo),
-                    contentDescription = "గల్పిక",
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier.height(48.dp).padding(vertical = 4.dp)
-                )
-            } else {
-                Text(
-                    text = title,
-                    fontFamily = RamabhadraFont,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 22.sp,
-                    color = Color.White
-                )
-            }
+            Image(
+                painter = painterResource(id = R.drawable.galpika_logo),
+                contentDescription = "గల్పిక",
+                contentScale = ContentScale.Fit,
+                modifier = Modifier.height(48.dp).padding(vertical = 4.dp)
+            )
         },
         navigationIcon = {
             IconButton(onClick = onMenuClick) {

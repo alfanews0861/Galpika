@@ -3,11 +3,7 @@
     <style name="Theme.Galpika" parent="Theme.SplashScreen">
         <!-- Set the splash screen background -->
         <item name="windowSplashScreenBackground">@android:color/white</item>
-
-        <!-- Use vector drawable for the splash screen logo -->
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo</item>
-
-        <!-- Post-splash screen theme -->
+        <item name="windowSplashScreenAnimatedIcon">@android:color/transparent</item>
         <item name="postSplashScreenTheme">@style/Theme.Galpika.Main</item>
     </style>
 

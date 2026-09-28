@@ -38,6 +38,13 @@ import com.google.firebase.auth.GoogleAuthProvider
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -51,15 +58,58 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Install the splash screen before calling super.onCreate
-        installSplashScreen()
+        val splashScreen = installSplashScreen()
         
         super.onCreate(savedInstanceState)
+        
+        // Hide native splash screen as fast as possible to show our full-screen custom one
+        splashScreen.setKeepOnScreenCondition { false }
 
         setContent {
             GalpikaTheme {
-                MainAppScreen(newsRepository, authRepository)
+                var showSplash by remember { mutableStateOf(true) }
+                
+                if (showSplash) {
+                    CustomSplashScreen(
+                        newsRepository = newsRepository,
+                        onTimeout = { showSplash = false }
+                    )
+                } else {
+                    MainAppScreen(newsRepository, authRepository)
+                }
             }
         }
+    }
+}
+
+@Composable
+fun CustomSplashScreen(
+    newsRepository: NewsRepository,
+    onTimeout: () -> Unit
+) {
+    // Start prefetching news in the background and wait 2 seconds
+    LaunchedEffect(Unit) {
+        launch {
+            newsRepository.getNewsFeed("అన్ని", "అన్ని").collect { 
+                // Collect updates to preload data into cache
+            }
+        }
+        delay(2000)
+        onTimeout()
+    }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
+        contentAlignment = Alignment.Center
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_splash_logo),
+            contentDescription = "Galpika Splash",
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
     }
 }
 
@@ -157,13 +207,6 @@ fun MainAppScreen(
             topBar = {
                 if (currentSubScreen == null) {
                     GalpikaTopBar(
-                        title = when (currentTab) {
-                            "home" -> "గల్పిక"
-                            "local" -> "స్థానిక సెటైర్లు"
-                            "news" -> "వార్తా విభాగం"
-                            "profile" -> "ప్రొఫైల్ & పాలసీలు"
-                            else -> "గల్పిక"
-                        },
                         onMenuClick = {
                             scope.launch { drawerState.open() }
                         },

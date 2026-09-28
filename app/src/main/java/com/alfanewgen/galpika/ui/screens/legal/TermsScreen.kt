@@ -22,11 +22,11 @@ fun TermsScreen(onBack: () -> Unit) {
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = "నిబంధనలు & షరతులు (Terms)",
-                        fontFamily = RamabhadraFont,
-                        fontSize = 18.sp,
-                        color = Color.White
+                    androidx.compose.foundation.Image(
+                        painter = androidx.compose.ui.res.painterResource(id = com.alfanewgen.galpika.R.drawable.galpika_logo),
+                        contentDescription = "గల్పిక",
+                        contentScale = androidx.compose.ui.layout.ContentScale.Fit,
+                        modifier = Modifier.height(48.dp).padding(vertical = 4.dp)
                     )
                 },
                 navigationIcon = {

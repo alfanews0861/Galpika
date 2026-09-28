@@ -34,11 +34,11 @@ fun DetailScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = "గల్పిక వార్తా కథనం",
-                        fontFamily = RamabhadraFont,
-                        fontSize = 20.sp,
-                        color = Color.White
+                    androidx.compose.foundation.Image(
+                        painter = androidx.compose.ui.res.painterResource(id = com.alfanewgen.galpika.R.drawable.galpika_logo),
+                        contentDescription = "గల్పిక",
+                        contentScale = ContentScale.Fit,
+                        modifier = Modifier.height(48.dp).padding(vertical = 4.dp)
                     )
                 },
                 navigationIcon = {
@@ -81,26 +81,11 @@ fun DetailScreen(
             )
 
             Column(modifier = Modifier.padding(18.dp)) {
-                // Category & Satire Badges
+                // Category Badge
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Box(
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(6.dp))
-                            .background(AccentAmber)
-                            .padding(horizontal = 8.dp, vertical = 4.dp)
-                    ) {
-                        Text(
-                            text = "హాస్య వ్యంగ్యం (Satire)",
-                            fontFamily = MallannaFont,
-                            fontSize = 12.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.Black
-                        )
-                    }
-
                     Box(
                         modifier = Modifier
                             .clip(RoundedCornerShape(6.dp))
