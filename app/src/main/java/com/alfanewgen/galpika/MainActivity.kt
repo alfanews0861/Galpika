@@ -35,6 +35,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -49,6 +50,9 @@ class MainActivity : ComponentActivity() {
     lateinit var authRepository: AuthRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Install the splash screen before calling super.onCreate
+        installSplashScreen()
+        
         super.onCreate(savedInstanceState)
 
         setContent {

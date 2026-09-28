@@ -1,5 +1,18 @@
 ﻿<resources>
-    <style name="Theme.Galpika" parent="android:Theme.Material.Light.NoActionBar">
+    <!-- Base application theme. -->
+    <style name="Theme.Galpika" parent="Theme.SplashScreen">
+        <!-- Set the splash screen background -->
+        <item name="windowSplashScreenBackground">@android:color/white</item>
+
+        <!-- Use vector drawable for the splash screen logo -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo</item>
+
+        <!-- Post-splash screen theme -->
+        <item name="postSplashScreenTheme">@style/Theme.Galpika.Main</item>
+    </style>
+
+    <!-- The actual theme used by the app after the splash screen -->
+    <style name="Theme.Galpika.Main" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@color/primary_blue</item>
         <item name="android:navigationBarColor">@color/surface_white</item>
         <item name="android:windowLightNavigationBar">true</item>

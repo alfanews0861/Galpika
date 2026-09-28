@@ -4,6 +4,7 @@ import com.alfanewgen.galpika.data.model.Grievance
 import com.alfanewgen.galpika.data.model.NewsArticle
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.Source
 import com.google.firebase.functions.FirebaseFunctions
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -75,6 +76,15 @@ class NewsRepository @Inject constructor(
         }
         if (district != "అన్ని") {
             query = query.whereEqualTo("district", district)
+        }
+        
+        try {
+            val snapshot = query.get(Source.CACHE).await()
+            if (snapshot != null && !snapshot.isEmpty) {
+                trySend(snapshot.toObjects(NewsArticle::class.java))
+            }
+        } catch (e: Exception) {
+            // Ignored, proceed to network fetch
         }
 
         val listener = query.addSnapshotListener { snapshot, error ->

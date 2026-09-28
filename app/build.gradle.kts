@@ -140,6 +140,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.core.splashscreen)
 
     // Compose BOM & UI
     implementation(platform(libs.androidx.compose.bom))
