@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="te" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>కమ్యూనిటీ నిబంధనలు (Community Guidelines) - గల్పిక (Galpika)</title>
+  <meta name="description" content="గల్పిక (Galpika) కమ్యూనిటీ మార్గదర్శకాలు & కంటెంట్ విధానం. వ్యంగ్య జర్నలిజం నైతిక విలువలు మరియు ప్రచురణ ప్రమాణాలు.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231e40af'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Mallanna&family=Ramabhadra&display=swap" rel="stylesheet">
+  <style>
+    .font-ramabhadra { font-family: 'Ramabhadra', sans-serif; }
+    .font-mallanna { font-family: 'Mallanna', sans-serif; }
+    .font-inter { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-inter antialiased selection:bg-blue-600 selection:text-white">
+
+  <!-- Top Bar -->
+  <div class="bg-slate-900 text-slate-200 text-xs py-2 px-4 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="bg-blue-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Editorial Standards</span>
+        <span class="text-slate-300">App: <strong>Galpika (గల్పిక)</strong> | Package: <code class="text-blue-300">com.alfanewgen.galpika</code></span>
+      </div>
+      <div class="flex items-center gap-4 text-xs">
+        <a href="/privacy.html" class="hover:text-blue-400 underline">గోప్యతా విధానం (Privacy)</a>
+        <span>•</span>
+        <a href="/legal.html" class="hover:text-slate-300 underline">అన్ని పాలసీలు (All Policies)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 py-3.5 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-900 to-blue-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl font-bold text-slate-900 font-ramabhadra tracking-tight leading-none">గల్పిక</span>
+            <span class="text-xs bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded-full border border-blue-200">Guidelines</span>
+          </div>
+          <p class="text-xs text-slate-500 font-mallanna -mt-0.5">కమ్యూనిటీ & ఎడిటోరియల్ మార్గదర్శకాలు</p>
+        </div>
+      </a>
+
+      <div class="flex items-center gap-2">
+        <button onclick="toggleLanguage('te')" id="btn-te" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-blue-600 text-white shadow-sm">తెలుగు</button>
+        <button onclick="toggleLanguage('en')" id="btn-en" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-slate-100 text-slate-700 hover:bg-slate-200">English</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-b from-blue-950 to-slate-900 text-white py-10 px-4">
+    <div class="max-w-5xl mx-auto">
+      <h1 class="text-2xl sm:text-4xl font-extrabold font-ramabhadra tracking-tight">
+        కమ్యూనిటీ నిబంధనలు • Community Guidelines
+      </h1>
+      <p class="mt-2 text-slate-300 text-sm sm:text-base max-w-3xl font-mallanna">
+        గల్పిక వేదికపై ఆరోగ్యకరమైన, వినోదాత్మకమైన వ్యంగ్య జర్నలిజం మరియు పాఠకుల బాధ్యతాయుత ప్రవర్తనా నియమావళి.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+
+      <div id="content-te" class="space-y-6 font-mallanna text-slate-700 leading-relaxed text-base">
+        <div class="space-y-3">
+          <h3 class="text-lg font-bold font-ramabhadra text-slate-900">
+            1. సంపాదకీయ నైతిక ప్రమాణాలు (Editorial Standards)
+          </h3>
+          <p>
+            గల్పిక ప్రధానంగా సమకాలీన సామాజిక, రాజకీయ అంశాలపై వ్యంగ్యాస్త్రాలు సంధించే వినోద వేదిక. అయితే వ్యంగ్యం అనే ముసుగులో ద్వేషాన్ని, అసత్య ప్రచారాన్ని లేదా సమాజంలో చిచ్చు పెట్టే అంశాలను ప్రచురించడాన్ని మేము ఖండిస్తున్నాము.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <h3 class="text-lg font-bold font-ramabhadra text-slate-900">
+            2. నిషేధిత కంటెంట్ (Prohibited Content)
+          </h3>
+          <ul class="list-disc list-inside space-y-1.5 text-sm pl-2">
+            <li>భారతదేశ సార్వభౌమత్వానికి, రక్షణకు, ఐక్యతకు భంగం కలిగించే అంశాలు.</li>
+            <li>మత విద్వేషాలు, కుల వివక్ష లేదా జాతి వివక్షను రెచ్చగొట్టే కథనాలు.</li>
+            <li>వ్యక్తుల వ్యక్తిగత జీవితాలపై నీచమైన దూషణలు, అశ్లీలత మరియు బెదిరింపులు.</li>
+            <li>పిల్లల భద్రతకు హాని కలిగించే ఏ విధమైన కంటెంట్ (CSAM/CSAE).</li>
+            <li>ఇతరుల కాపీరైట్ లేదా ట్రేడ్‌మార్క్‌ల అనధికార చౌర్యం.</li>
+          </ul>
+        </div>
+
+        <div class="space-y-3">
+          <h3 class="text-lg font-bold font-ramabhadra text-slate-900">
+            3. విలేకరుల క్రమశిక్షణ (Reporter Conduct)
+          </h3>
+          <p>
+            గల్పికలో వార్తలు రాసే అనుమతి పొందిన విలేకరులు ప్రతి కథనంపై 'వ్యంగ్య కథనం' అనే మార్కును స్పష్టంగా ఉంచాలి. ఉద్దేశపూర్వకంగా తప్పుడు ఆధారాలతో ఎవరిపై అయినా పరువు నష్టం కలిగించేలా కథనాలు రాస్తే వారి విలేకరి గుర్తింపును శాశ్వతంగా రద్దు చేస్తాము.
+          </p>
+        </div>
+      </div>
+
+      <div id="content-en" class="space-y-6 font-inter text-slate-700 leading-relaxed text-sm hidden">
+        <h3 class="text-lg font-bold text-slate-900">Community & Editorial Standards</h3>
+        <p>
+          Galpika values constructive parody and satire while upholding high ethical journalism standards. Content promoting hate speech, child exploitation, harassment, copyright theft, or threats to national security is strictly prohibited and subject to immediate removal.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="bg-slate-900 text-slate-400 py-10 px-4 mt-12 border-t border-slate-800 text-xs">
+    <div class="max-w-5xl mx-auto space-y-6">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold font-ramabhadra">గ</div>
+          <span class="text-white font-ramabhadra text-base">గల్పిక (Galpika)</span>
+          <span class="text-slate-500">•</span>
+          <span class="text-slate-400">Alfa NewGen Media</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="/privacy.html" class="hover:text-white">గోప్యతా విధానం (Privacy)</a>
+          <a href="/delete-account.html" class="hover:text-white">ఖాతా తొలగింపు (Delete Account)</a>
+          <a href="/terms.html" class="hover:text-white">నిబంధనలు (Terms)</a>
+          <a href="/disclaimer.html" class="hover:text-white">వ్యంగ్య నిరాకరణ (Disclaimer)</a>
+          <a href="/community-guidelines.html" class="text-white font-bold">కమ్యూనిటీ నిబంధనలు (Guidelines)</a>
+        </div>
+      </div>
+      <div class="pt-6 border-t border-slate-800 text-center text-slate-500 text-[11px]">
+        <p>© 2026 గల్పిక - ఆల్ఫా న్యూజెన్ మీడియా. Package ID: com.alfanewgen.galpika</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleLanguage(lang) {
+      const teContent = document.getElementById('content-te');
+      const enContent = document.getElementById('content-en');
+      const btnTe = document.getElementById('btn-te');
+      const btnEn = document.getElementById('btn-en');
+
+      if (lang === 'en') {
+        teContent.classList.add('hidden');
+        enContent.classList.remove('hidden');
+        btnEn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-blue-600 text-white shadow-sm';
+        btnTe.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-slate-100 text-slate-700 hover:bg-slate-200';
+      } else {
+        enContent.classList.add('hidden');
+        teContent.classList.remove('hidden');
+        btnTe.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-blue-600 text-white shadow-sm';
+        btnEn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-slate-100 text-slate-700 hover:bg-slate-200';
+      }
+    }
+  </script>
+</body>
+</html>

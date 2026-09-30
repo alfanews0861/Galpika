@@ -1,4 +1,4 @@
-﻿<resources>
+<resources>
     <string name="app_name">గల్పిక</string>
     <string name="app_tagline">తెలుగు వ్యంగ్య &amp; హాస్య వార్తా వేదిక</string>
     <string name="satire_disclaimer_short">గమనిక: ఇది పూర్తిగా వ్యంగ్య/హాస్య కల్పిత కథనం మాత్రమే. ఎవరినీ కించపరచడానికి ఉద్దేశించినది కాదు.</string>
@@ -17,7 +17,17 @@
     <string name="menu_disclaimer">వ్యంగ్య ప్రకటన &amp; ఉద్దేశం</string>
     <string name="menu_privacy">గోప్యతా విధానం (Privacy)</string>
     <string name="menu_terms">నిబంధనలు (Terms)</string>
+    <string name="menu_delete_account">ఖాతా &amp; డేటా తొలగింపు (Delete Account)</string>
+    <string name="menu_child_safety">పిల్లల భద్రత (Child Safety)</string>
     <string name="menu_share">యాప్‌ను షేర్ చేయండి</string>
+
+    <!-- Official Hosting Policy URLs -->
+    <string name="url_privacy_policy">https://galpika-715ae.web.app/privacy.html</string>
+    <string name="url_delete_account">https://galpika-715ae.web.app/delete-account.html</string>
+    <string name="url_terms">https://galpika-715ae.web.app/terms.html</string>
+    <string name="url_disclaimer">https://galpika-715ae.web.app/disclaimer.html</string>
+    <string name="url_grievance">https://galpika-715ae.web.app/grievance.html</string>
+    <string name="url_legal_hub">https://galpika-715ae.web.app/legal.html</string>
 
     <!-- Categories -->
     <string name="cat_all">అన్ని</string>

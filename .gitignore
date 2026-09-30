@@ -1,4 +1,4 @@
-﻿*.iml
+*.iml
 .gradle
 /local.properties
 /.idea/
@@ -19,6 +19,10 @@ node_modules/
 dist/
 .firebase/
 .kotlin/
+
+# Local env
+.env
+.env.local
 
 # Keep keystore committed as requested
 !release.keystore

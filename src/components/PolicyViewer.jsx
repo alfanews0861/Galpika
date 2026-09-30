@@ -49,17 +49,30 @@ export const PolicyViewer = () => {
         </div>
 
         {/* Policy Footer */}
-        <div className="bg-slate-50 border-t border-slate-200 px-5 py-3 flex items-center justify-between">
-          <button
-            onClick={() => {
-              setSelectedPolicy(null);
-              setIsGrievanceOpen(true);
-            }}
-            className="text-xs text-amber-700 hover:text-amber-800 font-ramabhadra flex items-center gap-1.5"
-          >
-            <ShieldAlert size={14} />
-            ఫిర్యాదు దాఖలు చేయండి
-          </button>
+        <div className="bg-slate-50 border-t border-slate-200 px-5 py-3 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => {
+                setSelectedPolicy(null);
+                setIsGrievanceOpen(true);
+              }}
+              className="text-xs text-amber-700 hover:text-amber-800 font-ramabhadra flex items-center gap-1.5"
+            >
+              <ShieldAlert size={14} />
+              ఫిర్యాదు చేయండి
+            </button>
+
+            {selectedPolicy.webUrl && (
+              <a
+                href={selectedPolicy.webUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-brand-700 hover:text-brand-900 font-ramabhadra underline flex items-center gap-1"
+              >
+                అధికారిక వెబ్ పేజీ &rarr;
+              </a>
+            )}
+          </div>
 
           <button
             onClick={() => setSelectedPolicy(null)}

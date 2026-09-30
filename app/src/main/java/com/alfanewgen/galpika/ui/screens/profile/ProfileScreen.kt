@@ -1,4 +1,4 @@
-﻿package com.alfanewgen.galpika.ui.screens.profile
+package com.alfanewgen.galpika.ui.screens.profile
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -23,6 +23,7 @@ import coil.compose.AsyncImage
 import com.alfanewgen.galpika.data.model.UserProfile
 import com.alfanewgen.galpika.data.repository.AuthRepository
 import com.alfanewgen.galpika.theme.*
+import androidx.compose.ui.platform.LocalUriHandler
 
 @Composable
 fun ProfileScreen(
@@ -32,6 +33,7 @@ fun ProfileScreen(
     onNavigateToPolicy: (String) -> Unit
 ) {
     val currentUser by authRepository.currentUser.collectAsState(initial = null)
+    val uriHandler = LocalUriHandler.current
 
     Column(
         modifier = Modifier
@@ -275,6 +277,20 @@ fun ProfileScreen(
                     title = "నిబంధనలు & షరతులు (Terms of Service)",
                     subtitle = "పోర్టల్ వినియోగ నిబంధనలు మరియు బాధ్యతలు",
                     onClick = { onNavigateToPolicy("terms") }
+                )
+                HorizontalDivider()
+                PolicyItem(
+                    icon = Icons.Default.Delete,
+                    title = "ఖాతా & డేటా తొలగింపు (Delete Account)",
+                    subtitle = "Play Store పాలసీ ప్రకారం ఖాతా మరియు డేటా శాశ్వత తొలగింపు",
+                    onClick = { uriHandler.openUri("https://galpika-715ae.web.app/delete-account.html") }
+                )
+                HorizontalDivider()
+                PolicyItem(
+                    icon = Icons.Default.Info,
+                    title = "అధికారిక లీగల్ పోర్టల్ (Legal Hub)",
+                    subtitle = "పిల్లల భద్రత, కమ్యూనిటీ నిబంధనలు మరియు అన్ని పాలసీలు",
+                    onClick = { uriHandler.openUri("https://galpika-715ae.web.app/legal.html") }
                 )
             }
         }

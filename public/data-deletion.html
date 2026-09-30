@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="te" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ఖాతా & డేటా తొలగింపు (Account & Data Deletion) - గల్పిక (Galpika)</title>
+  <meta name="description" content="గల్పిక (Galpika) ఖాతా మరియు వ్యక్తిగత డేటా శాశ్వత తొలగింపు అభ్యర్థన పేజీ. Google Play Console డేటా డిలీషన్ పాలసీ నిబంధనల ప్రకారం.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231e40af'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Mallanna&family=Ramabhadra&display=swap" rel="stylesheet">
+  <style>
+    .font-ramabhadra { font-family: 'Ramabhadra', sans-serif; }
+    .font-mallanna { font-family: 'Mallanna', sans-serif; }
+    .font-inter { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-inter antialiased selection:bg-rose-600 selection:text-white">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-slate-900 text-slate-200 text-xs py-2 px-4 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="bg-rose-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Play Console Mandated</span>
+        <span class="text-slate-300">App: <strong>Galpika (గల్పిక)</strong> | Package: <code class="text-blue-300">com.alfanewgen.galpika</code></span>
+      </div>
+      <div class="flex items-center gap-4 text-xs">
+        <a href="/privacy.html" class="hover:text-blue-400 underline">గోప్యతా విధానం (Privacy Policy)</a>
+        <span>•</span>
+        <a href="/legal.html" class="hover:text-slate-300 underline">అన్ని పాలసీలు (All Policies)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 py-3.5 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-900 to-blue-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl font-bold text-blue-950 font-ramabhadra tracking-tight leading-none">గల్పిక</span>
+            <span class="text-xs bg-rose-100 text-rose-800 font-bold px-2 py-0.5 rounded-full border border-rose-200">Data Deletion</span>
+          </div>
+          <p class="text-xs text-slate-500 font-mallanna -mt-0.5">తెలుగు వ్యంగ్య & హాస్య వార్తా వేదిక</p>
+        </div>
+      </a>
+
+      <!-- Quick Language Switcher -->
+      <div class="flex items-center gap-2">
+        <button onclick="toggleLanguage('te')" id="btn-te" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-blue-600 text-white shadow-sm">
+          తెలుగు
+        </button>
+        <button onclick="toggleLanguage('en')" id="btn-en" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-slate-100 text-slate-700 hover:bg-slate-200">
+          English
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-b from-slate-900 via-rose-950/40 to-slate-900 text-white py-10 px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs px-2.5 py-1 rounded-full font-medium">Google Play Policy</span>
+        <span class="bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs px-2.5 py-1 rounded-full font-medium">DPDP Act 2023 - Right to Erasure</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold font-ramabhadra tracking-tight">
+        ఖాతా & డేటా తొలగింపు • Account & Data Deletion
+      </h1>
+      <p class="mt-2 text-slate-300 text-sm sm:text-base max-w-3xl font-mallanna">
+        గల్పిక (Galpika) లో మీ ఖాతాను మరియు అనుబంధ వ్యక్తిగత సమాచారాన్ని శాశ్వతంగా తొలగించడానికి ఈ అధికారిక వెబ్ పేజీ ద్వారా నేరుగా అభ్యర్థించవచ్చు.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6 pt-6 border-t border-slate-800 text-xs">
+        <div>
+          <span class="text-slate-400 block">యాప్ పేరు:</span>
+          <span class="font-semibold text-white">గల్పిక (Galpika News)</span>
+        </div>
+        <div>
+          <span class="text-slate-400 block">ప్యాకేజ్ ఐడీ:</span>
+          <span class="font-mono text-rose-300">com.alfanewgen.galpika</span>
+        </div>
+        <div>
+          <span class="text-slate-400 block">పరిష్కార కాలపరిమితి:</span>
+          <span class="font-semibold text-emerald-400">7 నుండి 15 పని దినాలు (గరిష్టంగా 30 రోజులు)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+      <!-- Left Column: Web Deletion Request Form (5 Cols) -->
+      <div class="lg:col-span-5 space-y-6">
+        <div class="bg-white border-2 border-rose-200 rounded-2xl p-6 shadow-sm">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center font-bold">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+            </div>
+            <div>
+              <h2 class="text-lg font-bold text-slate-900 font-ramabhadra">
+                ఆన్‌లైన్ తొలగింపు ఫారమ్
+              </h2>
+              <p class="text-xs text-slate-500">యాప్ లేకపోయినా ఇక్కడి నుంచే పంపవచ్చు</p>
+            </div>
+          </div>
+
+          <!-- Form Element -->
+          <form id="deletion-form" onsubmit="handleDeletionSubmit(event)" class="space-y-4 text-xs font-inter">
+            <div>
+              <label class="block text-slate-700 font-semibold mb-1" for="email">
+                రిజిస్టర్డ్ గూగుల్ ఇమెయిల్ ఐడీ (Registered Google Email) *
+              </label>
+              <input 
+                type="email" 
+                id="email" 
+                required 
+                placeholder="yourname@gmail.com" 
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-rose-500 text-slate-900 text-sm"
+              >
+            </div>
+
+            <div>
+              <label class="block text-slate-700 font-semibold mb-1" for="reason">
+                తొలగింపునకు కారణం (Reason for Deletion - Optional)
+              </label>
+              <select id="reason" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-rose-500 text-slate-700 text-xs">
+                <option value="privacy">గోప్యతా కారణాలు (Privacy Concerns)</option>
+                <option value="no-longer-using">ఇకపై ఉపయోగించడం లేదు (No longer using)</option>
+                <option value="switch-account">మరొక ఖాతాకు మారుతున్నాను (Switching accounts)</option>
+                <option value="other">ఇతర కారణం (Other reason)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-slate-700 font-semibold mb-1" for="comments">
+                అదనపు వివరాలు (Additional Details / Account ID)
+              </label>
+              <textarea 
+                id="comments" 
+                rows="2" 
+                placeholder="ఏదైనా అదనపు సమాచారం ఉంటే ఇక్కడ రాయండి..." 
+                class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-rose-500 text-slate-900 text-xs"
+              ></textarea>
+            </div>
+
+            <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-amber-900 text-[11px] leading-relaxed">
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input type="checkbox" id="confirmation" required class="mt-0.5 rounded text-rose-600 focus:ring-rose-500">
+                <span>నేను గల్పిక నుండి నా ఖాతా మరియు వ్యక్తిగత డేటాను శాశ్వతంగా తొలగించమని అభ్యర్థిస్తున్నాను అని నిర్ధారిస్తున్నాను.</span>
+              </label>
+            </div>
+
+            <button 
+              type="submit" 
+              class="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2 text-sm"
+            >
+              <span>తొలగింపు అభ్యర్థన సమర్పించండి</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </button>
+          </form>
+
+          <!-- Success Notification (Hidden initially) -->
+          <div id="deletion-success" class="hidden mt-4 p-4 bg-emerald-50 border border-emerald-300 rounded-xl text-emerald-900 text-xs space-y-2">
+            <div class="flex items-center gap-2 font-bold text-emerald-800 text-sm">
+              <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              <span>అభ్యర్థన విజయవంతంగా నమోదైంది!</span>
+            </div>
+            <p>మీ తొలగింపు రిక్వెస్ట్ మా గ్రీవెన్స్ విభాగానికి చేరింది.</p>
+            <div class="bg-white p-2.5 rounded-lg border border-emerald-200 font-mono text-[11px] space-y-1">
+              <div>రిక్వెస్ట్ నంబర్: <strong id="ticket-id" class="text-blue-700"></strong></div>
+              <div>స్టేటస్: <span class="text-amber-600 font-semibold">పెండింగ్ పరిశీలన (In Review)</span></div>
+            </div>
+            <p class="text-[11px] text-slate-600">
+              ధృవీకరణ కొరకు మీ ఇమెయిల్‌ను చెక్ చేసుకోండి. 7 నుండి 15 రోజుల్లో పూర్తి డేటా తొలగించబడుతుంది.
+            </p>
+          </div>
+
+          <!-- Alternative Direct Email Link -->
+          <div class="mt-6 pt-4 border-t border-slate-200 text-center">
+            <span class="text-xs text-slate-500 block mb-2">లేదా నేరుగా ఇమెయిల్ ద్వారా కోరండి:</span>
+            <a 
+              href="mailto:galpikasrinu@gmail.com?cc=grievance@galpika.news&subject=Galpika%20Account%20Deletion%20Request&body=Hello%20Galpika%20Team,%0A%0AI%20request%20the%20permanent%20deletion%20of%20my%20account%20and%20all%20associated%20personal%20data%20from%20Galpika%20(com.alfanewgen.galpika).%0A%0AMy%20Registered%20Google%20Email:%20[ENTER%20EMAIL%20HERE]%0A%0AThank%20you."
+              class="inline-flex items-center gap-1.5 text-xs text-rose-700 font-bold hover:underline"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              galpikasrinu@gmail.com కు ఇమెయిల్ పంపండి
+            </a>
+          </div>
+        </div>
+
+        <!-- Android In-App Deletion Steps Card -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3">
+          <h3 class="text-sm font-bold text-slate-900 font-ramabhadra flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs">📱</span>
+            ఆండ్రాయిడ్ యాప్ లోపల ఎలా తొలగించాలి?
+          </h3>
+          <ol class="list-decimal list-inside space-y-1.5 text-xs text-slate-600 font-mallanna leading-relaxed">
+            <li>మీ మొబైల్‌లో <strong>గల్పిక (Galpika)</strong> యాప్‌ను తెరవండి.</li>
+            <li>దిగువ మెనూలో <strong>'ప్రొఫైల్' (Profile)</strong> ట్యాబ్‌పై క్లిక్ చేయండి.</li>
+            <li>పేజీ చివరన ఉన్న <strong>'ఖాతా మరియు డేటా తొలగింపు' (Delete Account)</strong> బటన్‌ను నొక్కండి.</li>
+            <li>స్క్రీన్‌పై కనిపించే నిర్ధారణ పాప్-అప్‌ను అంగీకరిస్తే వెంటనే మీ ఖాతా లాగౌట్ అయి తొలగింపునకు షెడ్యూల్ అవుతుంది.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Right Column: Statutory & Play Console Disclosures (7 Cols) -->
+      <div class="lg:col-span-7 space-y-6">
+
+        <!-- TELUGU DISCLOSURES -->
+        <div id="disclosure-te" class="space-y-6 font-mallanna text-slate-700 text-base leading-relaxed">
+
+          <!-- Card 1: What is Deleted -->
+          <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-3">
+            <h3 class="text-lg font-bold text-slate-900 font-ramabhadra flex items-center gap-2">
+              <span class="text-rose-600 font-bold">1.</span> ఏ డేటా శాశ్వతంగా తొలగించబడుతుంది? (Data Deleted)
+            </h3>
+            <p class="text-sm">మీ ఖాతా తొలగింపు అభ్యర్థన ఆమోదించబడిన వెంటనే క్రింది వివరాలన్నీ శాశ్వతంగా తొలగించబడతాయి:</p>
+            <ul class="list-disc list-inside space-y-1.5 text-sm pl-2">
+              <li><strong>యూజర్ ఖాతా గుర్తింపు:</strong> గూగుల్ ఫైర్‌బేస్ ఆథెంటికేషన్ రికార్డులు మరియు టోకెన్లు.</li>
+              <li><strong>ప్రొఫైల్ వివరాలు:</strong> పేరు, ఇమెయిల్ ఐడీ, ప్రొఫైల్ ఫోటో లింక్, మరియు యూజర్ రోల్.</li>
+              <li><strong>బుక్‌మార్క్‌లు & వ్యక్తిగత డేటా:</strong> మీరు యాప్‌లో సేవ్ చేసుకున్న వార్తల జాబితా మరియు రీడింగ్ హిస్టరీ.</li>
+              <li><strong>డ్రాఫ్ట్ వార్తలు:</strong> రిపోర్టర్ ఖాతా అయితే ప్రచురణకు సమర్పించని డ్రాఫ్ట్ కథనాలు.</li>
+              <li><strong>యాప్ ప్రాధాన్యతలు:</strong> ఫాంట్ సైజు, నోటిఫికేషన్ సెట్టింగ్స్ మొదలైనవి.</li>
+            </ul>
+          </div>
+
+          <!-- Card 2: What is Retained and Why -->
+          <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-3">
+            <h3 class="text-lg font-bold text-slate-900 font-ramabhadra flex items-center gap-2">
+              <span class="text-amber-600 font-bold">2.</span> ఏ సమాచారం చట్టబద్ధంగా నిల్వ ఉంటుంది? (Data Retained & Retention Period)
+            </h3>
+            <p class="text-sm">
+              భారతీయ చట్టాలు మరియు నియంత్రణ నిబంధనల ప్రకారం క్రింది సమాచారం నిర్దిష్ట కాలం పాటు మాత్రమే నిల్వ చేయబడుతుంది:
+            </p>
+            <div class="space-y-2 text-sm pl-2">
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                <strong>ఎ. చట్టపరమైన సర్వర్ లాగ్‌లు (Server Security Logs):</strong>
+                <p class="text-xs text-slate-600 mt-0.5">
+                  ఇన్ఫర్మేషన్ టెక్నాలజీ చట్టం, 2000 లోని సెక్షన్ 67C మరియు ఐటీ రూల్స్ 2021 నిబంధనల ప్రకారం, సర్వర్ భద్రత మరియు సైబర్ నేర పరిశోధనల కోసం సిస్టమ్ లాగ్‌లు గరిష్టంగా <strong>180 రోజుల పాటు</strong> సురక్షితంగా ఆర్కైవ్ చేయబడతాయి. ఆ తర్వాత అవి ఆటోమేటిక్‌గా నశించిపోతాయి.
+                </p>
+              </div>
+
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                <strong>బి. ప్రచురితమైన పబ్లిక్ కథనాలు (Published Satirical Articles):</strong>
+                <p class="text-xs text-slate-600 mt-0.5">
+                  ఒకవేళ మీరు అధికారిక రిపోర్టర్‌గా ఇప్పటికే ప్రజలకు అందుబాటులోకి ప్రచురించిన వ్యంగ్య కథనాలు పబ్లిక్ రికార్డులో భాగంగా ఉంటాయి; అయితే రచయిత వ్యక్తిగత ఇమెయిల్ మరియు ఖాతా సంబంధాలు శాశ్వతంగా తొలగించబడి 'అజ్ఞాత రచయిత'గా మార్చబడతాయి.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Timeline & Process -->
+          <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-3">
+            <h3 class="text-lg font-bold text-slate-900 font-ramabhadra flex items-center gap-2">
+              <span class="text-blue-600 font-bold">3.</span> పరిష్కార కాలపరిమితి (Timeline & SLA)
+            </h3>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-start gap-2">
+                <span class="w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs shrink-0 mt-0.5 font-bold">1</span>
+                <span><strong>24 గంటల లోపు:</strong> మీ డిలీషన్ రిక్వెస్ట్ అందినట్లు నిర్ధారణ ఇమెయిల్ మరియు ట్రాకింగ్ ఐడీ జారీ చేయబడుతుంది.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs shrink-0 mt-0.5 font-bold">2</span>
+                <span><strong>7 నుండి 15 రోజుల లోపు:</strong> ఫైర్‌బేస్ డేటాబేస్ నుండి మీ సమస్త ప్రొఫైల్ సమాచారం మరియు బుక్‌మార్క్‌లు శాశ్వతంగా డిలీట్ చేయబడతాయి.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs shrink-0 mt-0.5 font-bold">3</span>
+                <span><strong>పూర్తి ధృవీకరణ:</strong> ప్రక్రియ ముగిసిన వెంటనే మీ ఇమెయిల్‌కు తుది తొలగింపు నివేదిక పంపబడుతుంది.</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- ENGLISH DISCLOSURES -->
+        <div id="disclosure-en" class="space-y-6 font-inter text-slate-700 text-sm leading-relaxed hidden">
+          
+          <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-3">
+            <h3 class="text-lg font-bold text-slate-900">1. What Data is Permanently Deleted</h3>
+            <p>Upon verification of your deletion request, the following data is permanently purged:</p>
+            <ul class="list-disc list-inside space-y-1 text-xs pl-2">
+              <li>Authentication credentials, unique user identifiers (UID), and Google OAuth tokens.</li>
+              <li>User profile attributes (Display Name, Email Address, Profile Picture URL, Role).</li>
+              <li>Saved articles, personal reading bookmarks, and category preferences.</li>
+              <li>Unpublished news drafts and private submissions.</li>
+            </ul>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-3">
+            <h3 class="text-lg font-bold text-slate-900">2. Statutory Data Retention (Compliance with IT Act & Rules)</h3>
+            <p>Intermediaries are subject to specific legal retention obligations under Indian law:</p>
+            <ul class="list-disc list-inside space-y-2 text-xs pl-2">
+              <li><strong>Server & Access Logs:</strong> Under Section 67C of the IT Act, 2000 and Rule 3(1)(h) of the IT Rules 2021, server logs are retained for up to 180 days solely for regulatory audits and anti-fraud purposes, after which they are permanently overwritten.</li>
+              <li><strong>Public Editorial Content:</strong> Articles previously published to the public satire feed remain part of the public domain, but personal author attributions are anonymized.</li>
+            </ul>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-3">
+            <h3 class="text-lg font-bold text-slate-900">3. Deletion Processing SLA</h3>
+            <p class="text-xs">
+              All web and in-app requests are acknowledged within 24 hours. The permanent deletion workflow is completed within 7 to 15 business days, in full adherence to Google Play's 30-day mandate.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="bg-slate-900 text-slate-400 py-10 px-4 mt-12 border-t border-slate-800 text-xs">
+    <div class="max-w-5xl mx-auto space-y-6">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold font-ramabhadra">
+            గ
+          </div>
+          <span class="text-white font-ramabhadra text-base">గల్పిక (Galpika)</span>
+          <span class="text-slate-500">•</span>
+          <span class="text-slate-400">Alfa NewGen Media</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="/privacy.html" class="hover:text-white">గోప్యతా విధానం (Privacy)</a>
+          <a href="/delete-account.html" class="text-rose-400 font-bold">ఖాతా తొలగింపు (Delete Account)</a>
+          <a href="/terms.html" class="hover:text-white">నిబంధనలు (Terms)</a>
+          <a href="/disclaimer.html" class="hover:text-white">వ్యంగ్య నిరాకరణ (Disclaimer)</a>
+          <a href="/grievance.html" class="hover:text-white">గ్రీవెన్స్ సెల్ (Grievance)</a>
+          <a href="/legal.html" class="hover:text-white">అన్ని పాలసీలు (All Policies)</a>
+        </div>
+      </div>
+      <div class="pt-6 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-2 text-slate-500 text-[11px]">
+        <p>© 2026 గల్పిక - ఆల్ఫా న్యూజెన్ మీడియా. సర్వ హక్కులు ప్రత్యేకించబడినవి.</p>
+        <p>Google Play Store ID: com.alfanewgen.galpika | Chief Grievance Officer: grievance@galpika.news</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleLanguage(lang) {
+      const teContent = document.getElementById('disclosure-te');
+      const enContent = document.getElementById('disclosure-en');
+      const btnTe = document.getElementById('btn-te');
+      const btnEn = document.getElementById('btn-en');
+
+      if (lang === 'en') {
+        teContent.classList.add('hidden');
+        enContent.classList.remove('hidden');
+        btnEn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-blue-600 text-white shadow-sm';
+        btnTe.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-slate-100 text-slate-700 hover:bg-slate-200';
+      } else {
+        enContent.classList.add('hidden');
+        teContent.classList.remove('hidden');
+        btnTe.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-blue-600 text-white shadow-sm';
+        btnEn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition bg-slate-100 text-slate-700 hover:bg-slate-200';
+      }
+    }
+
+    async function handleDeletionSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const reason = document.getElementById('reason').value;
+      const comments = document.getElementById('comments').value.trim();
+      if (!email) return;
+
+      const randomNum = Math.floor(1000 + Math.random() * 9000);
+      const ticketId = 'GAL-DEL-2026-' + randomNum;
+
+      document.getElementById('ticket-id').innerText = ticketId;
+      document.getElementById('deletion-form').classList.add('opacity-50', 'pointer-events-none');
+      document.getElementById('deletion-success').classList.remove('hidden');
+
+      // Scroll smoothly to success message
+      document.getElementById('deletion-success').scrollIntoView({ behavior: 'smooth' });
+
+      // Send form notification email directly to galpikasrinu@gmail.com
+      try {
+        await fetch("https://formsubmit.co/ajax/galpikasrinu@gmail.com", {
+          method: "POST",
+          headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: `[గల్పిక ఖాతా తొలగింపు - ${ticketId}] Account Deletion Request: ${email}`,
+            _template: "table",
+            "టికెట్ నంబర్ (Ticket ID)": ticketId,
+            "ఖాతా ఇమెయిల్ (Account Email)": email,
+            "తొలగింపునకు కారణం (Reason)": reason,
+            "అదనపు సమాచారం (Comments)": comments || "N/A",
+            "తేదీ & సమయం": new Date().toLocaleString('te-IN')
+          })
+        });
+      } catch (err) {
+        console.warn("Deletion notification email log:", err);
+      }
+    }
+  </script>
+</body>
+</html>
